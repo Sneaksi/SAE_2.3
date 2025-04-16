@@ -44,7 +44,7 @@ ventilometre/
 ---
 ## 🚀 Installation rapide
 
-### 1. Cloner le dépôt
+### 1. Télécharger le dépôt
 
 ```bash
 git clone https://github.com/Sneaksi/SAE_23.git
