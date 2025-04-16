@@ -30,14 +30,4 @@ Créer une application Web interactive permettant :
 
 ## 📁 Arborescence du projet
 
-ventilometre/
-├── templates/
-│   ├── etudiants.html           # Affiche la liste des étudiants
-│   └── index.html               # Interface principale (formulaire, historique, résultats)
-├── app.py                       # Application Flask
-├── collect_wind.py              # Récupération des vents via API OpenWeatherMap
-├── etudiants.json               # Données des étudiants et leurs résidences
-├── import_data.py               # Import des données JSON vers la base SQLite
-├── reset_db.py                  # Réinitialisation + structure de la base de données
-├── students.db                  # Fichier SQLite (base de données locale)
-
+ventilometre/ ├── templates/ │ ├── etudiants.html # Affiche la liste des étudiants │ └── index.html # Interface principale (formulaire, historique, résultats) ├── app.py # Application Flask ├── collect_wind.py # Récupération des vents via API OpenWeatherMap ├── etudiants.json # Données des étudiants et leurs résidences ├── import_data.py # Import des données JSON vers la base SQLite ├── reset_db.py # Réinitialisation + structure de la base de données ├── students.db # Fichier SQLite (base de données locale)
