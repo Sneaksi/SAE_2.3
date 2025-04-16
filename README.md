@@ -47,6 +47,8 @@ ventilometre/
 ### 1. Télécharger le dépôt
 
 https://github.com/Sneaksi/SAE_2.3/tree/main
+
+Ouvrez votre invite de commandes avec les permissions administrateur
 ```bash
 cd ventilometre
 ```
