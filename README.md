@@ -79,13 +79,6 @@ python app.py             # Lance le serveur Flask
 
 ---
 
-## 📷 Aperçu visuel
-
-Ajoutez ici vos captures d'écran dans un dossier `![image](https://github.com/user-attachments/assets/536f5cfa-5cc0-47b8-a4eb-94687fd2653a)
-` pour illustrer l'app.
-
----
-
 ## 📚 Licence
 
 Projet pédagogique — pas de licence officielle.  
