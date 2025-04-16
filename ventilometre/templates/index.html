@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fr"> <!-- Spécifie que le contenu est en français pour les moteurs de recherche et lecteurs d’écran -->
+
+<head>
+    <meta charset="UTF-8"> <!-- Encodage UTF-8 pour supporter les caractères spéciaux comme les accents -->
+    <title>Ventilomètre des Étudiants</title> <!-- Titre qui apparaît dans l’onglet du navigateur -->
+
+    <!-- Début de la feuille de style interne -->
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif; /* Police moderne et lisible */
+            background-color: #eef2f7; /* Couleur de fond douce pour le confort visuel */
+            margin: 0; /* Supprime la marge par défaut du navigateur */
+            padding: 2rem; /* Ajoute de l’espace intérieur autour du contenu */
+            display: flex;
+            flex-direction: column; /* Organisation verticale du contenu */
+            align-items: center; /* Centrage horizontal du contenu */
+        }
+
+        h1 {
+            color: #1e3a8a; /* Titre en bleu foncé pour attirer l’attention */
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 40px; /* Taille du logo emoji 🌀 */
+        }
+
+        form {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: row; /* Les éléments du formulaire sont alignés horizontalement */
+            gap: 10px; /* Espacement entre les champs */
+        }
+
+        input[type=text] {
+            padding: 10px;
+            width: 300px; /* Largeur fixe du champ de recherche */
+            border-radius: 6px;
+            border: 1px solid #ccc; /* Bordure grise claire */
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #1e40af; /* Bleu vif pour se démarquer */
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer; /* Change le curseur en main au survol */
+        }
+
+        .students-link {
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        .students-link a {
+            color: #3b3b5c;
+            text-decoration: none; /* Pas de soulignement de base */
+            font-weight: bold;
+        }
+
+        .students-link a:hover {
+            text-decoration: underline; /* Apparition du soulignement au survol */
+        }
+
+        .result, .history {
+            margin-top: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            width: 80%; /* S’adapte à l’écran jusqu’à 800px */
+            max-width: 800px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Légère ombre pour détacher le bloc visuellement */
+        }
+
+        .vent-median {
+            margin-top: 10px;
+            font-size: 1.1rem;
+            color: #1e3a8a;
+            background-color: #fff;
+            padding: 10px 20px;
+            border-radius: 6px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+
+        ul {
+            list-style-type: none; /* Supprime les puces de la liste */
+            padding-left: 0;
+        }
+
+        li {
+            margin: 5px 0;
+        }
+
+        .btn-clear {
+            margin-top: 10px;
+            background-color: #c0392b; /* Rouge pour montrer que l’action est risquée/supprime des données */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Logo emoji affiché en haut -->
+    <div class="logo">🌀</div>
+
+    <!-- Titre principal de la page -->
+    <h1>Ventilomètre des Étudiants</h1>
+
+    <!-- Bloc conditionnel : affiché seulement si une valeur collective de vent est disponible -->
+    {% if vent_collectif %}
+    <div class="vent-median">
+        🌍 Ventilomètre collectif du jour : <strong>{{ vent_collectif }} m/s</strong>
+    </div>
+    {% endif %}
+
+    <!-- Formulaire de recherche d’un étudiant par son nom -->
+    <form method="POST"> <!-- Les données sont envoyées au serveur en POST -->
+        <input type="text" name="nom" placeholder="Nom de l'étudiant" required> <!-- Champ de saisie obligatoire -->
+        <button type="submit">🔎 Rechercher</button> <!-- Bouton avec emoji loupe -->
+    </form>
+
+    <!-- Lien vers la page listant tous les étudiants -->
+    <div class="students-link">
+        <p>📄 <a href="{{ url_for('etudiants') }}">Voir tous les étudiants</a></p>
+    </div>
+
+    <!-- Affiche le résultat de la recherche si un étudiant est trouvé -->
+    {% if result %}
+    <div class="result">
+        <h2>Résultat pour {{ result.nom }} {{ result.prenom }}</h2>
+        <p>📍 Résidence principale : {{ result.ville1 }} — Vent : {{ result.vent1 }} m/s</p>
+
+        <!-- Résidence secondaire, seulement si elle est définie -->
+        {% if result.ville2 %}
+        <p>🏠 Résidence secondaire : {{ result.ville2 }} — Vent : {{ result.vent2 }} m/s</p>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    <!-- Historique personnel : les recherches effectuées par l’utilisateur courant -->
+    {% if historique_utilisateur %}
+    <div class="history">
+        <h2>🕒 Historique personnel</h2>
+        <ul>
+            {% for h in historique_utilisateur %}
+            <li>
+                {{ h[6] }} – <strong>{{ h[1] }} {{ result.prenom }}</strong> :
+                {{ h[2] }} ({{ h[3] }} m/s)
+                {% if h[4] %}/ {{ h[4] }} ({{ h[5] }} m/s){% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <!-- Historique global : toutes les recherches concernant un étudiant -->
+    {% if historique %}
+    <div class="history">
+        <h2>🧾 Historique global de {{ result.nom }} {{ result.prenom }}</h2>
+        <ul>
+            {% for r in historique %}
+            <li>
+                {{ r[6] }} – <strong>{{ r[1] }} {{ result.prenom }}</strong> :
+                {{ r[2] }} ({{ r[3] }} m/s)
+                {% if r[4] %}/ {{ r[4] }} ({{ r[5] }} m/s){% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+
+        <!-- Bouton de suppression de l’historique -->
+        <form method="POST" action="{{ url_for('clear_history') }}">
+            <button class="btn-clear">🗑️ Vider l'historique</button>
+        </form>
+    </div>
+    {% endif %}
+</body>
+</html>

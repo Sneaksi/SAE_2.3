@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr"> <!-- Déclaration du document HTML en langue française -->
+<head>
+    <meta charset="UTF-8"> <!-- Encodage UTF-8 pour gérer les accents et caractères spéciaux -->
+    <title>Liste des Étudiants</title> <!-- Titre de la page visible dans l'onglet du navigateur -->
+
+    <!-- Feuille de style CSS interne -->
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif; /* Police moderne et lisible */
+            background-color: #eef2f7; /* Fond bleu très clair */
+            margin: 0; /* Aucun espace autour du body */
+            padding: 2rem; /* Espace intérieur autour du contenu */
+            display: flex; /* Organisation flexible du contenu */
+            flex-direction: column; /* Organisation verticale */
+            align-items: center; /* Centrage horizontal */
+        }
+
+        h1 {
+            color: #1e3a8a; /* Bleu foncé pour le titre */
+        }
+
+        table {
+            width: 90%; /* Largeur relative à l'écran */
+            max-width: 900px; /* Largeur maximale pour éviter un affichage trop large */
+            border-collapse: collapse; /* Supprime les doubles bordures entre cellules */
+            margin-top: 30px; /* Espace au-dessus du tableau */
+            background: white; /* Fond blanc du tableau */
+            box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Ombre douce autour du tableau */
+            border-radius: 8px; /* Coins arrondis */
+            overflow: hidden; /* Empêche les débordements visuels */
+        }
+
+        th, td {
+            padding: 12px 15px; /* Espacement intérieur des cellules */
+            text-align: left; /* Alignement du texte à gauche */
+        }
+
+        th {
+            background-color: #1e3a8a; /* Fond bleu foncé pour les en-têtes */
+            color: white; /* Texte blanc */
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2; /* Alternance de couleur : gris clair */
+        }
+
+        tr:nth-child(odd) {
+            background-color: #ffffff; /* Alternance de couleur : blanc */
+        }
+
+        .back-btn {
+            margin-top: 2rem; /* Espace au-dessus du bouton */
+            background-color: #1e40af; /* Bleu vif */
+            color: white; /* Texte blanc */
+            padding: 10px 20px; /* Taille intérieure du bouton */
+            text-decoration: none; /* Supprime le soulignement du lien */
+            border-radius: 6px; /* Coins arrondis du bouton */
+        }
+
+        .back-btn:hover {
+            background-color: #163a96; /* Couleur plus foncée au survol */
+        }
+    </style>
+</head>
+<body>
+    <!-- Titre principal de la page -->
+    <h1>📚 Liste des Étudiants</h1>
+
+    <!-- Tableau affichant les données des étudiants -->
+    <table>
+        <thead>
+            <tr>
+                <!-- En-têtes des colonnes du tableau -->
+                <th>Groupe</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Ville principale</th>
+                <th>Ville secondaire</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Boucle Jinja : pour chaque étudiant dans la variable "etudiants", on crée une ligne -->
+            {% for etu in etudiants %}
+            <tr>
+                <td>{{ etu.groupe }}</td> <!-- Affiche le groupe -->
+                <td>{{ etu.nom }}</td> <!-- Affiche le nom -->
+                <td>{{ etu.prenom }}</td> <!-- Affiche le prénom -->
+                <td>{{ etu.ville_principale or "" }}</td> <!-- Affiche la ville principale, ou vide si non définie -->
+                <td>{{ etu.ville_secondaire or "" }}</td> <!-- Affiche la ville secondaire, ou vide si non définie -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Bouton de retour vers la page d’accueil -->
+    <a class="back-btn" href="{{ url_for('index') }}">⬅ Retour à l'accueil</a>
+</body>
+</html>
