@@ -42,6 +42,38 @@ ventilometre/
 ```
 
 ---
+## 🚀 Installation rapide
+
+### 1. Cloner le dépôt
+
+```bash
+git clone https://github.com/<ton-utilisateur>/ventilometre-g15.git
+cd ventilometre-g15
+```
+
+### 2. Créer et activer un environnement virtuel (recommandé)
+
+```bash
+python -m venv env
+source env/bin/activate   # ou env\Scripts\activate sur Windows
+```
+
+### 3. Installer les dépendances
+
+```bash
+pip install flask requests
+```
+
+### 4. Lancer l’application
+
+```bash
+python reset_db.py        # Réinitialise la base de données
+python import_data.py     # Importe les données depuis le fichier JSON
+python collect_wind.py    # Récupère les vents du jour
+python app.py             # Lance le serveur Flask
+```
+
+---
 
 ## 🧪 Fonctionnalités principales
 
