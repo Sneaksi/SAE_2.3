@@ -42,12 +42,12 @@ ventilometre/
 ```
 
 ---
-## 🚀 Installation rapide
+## 🚀 Installation rapide pour windows
 
 ### 1. Télécharger le dépôt
 
-```bash
 https://github.com/Sneaksi/SAE_23.git
+```bash
 cd ventilometre-g15
 ```
 
