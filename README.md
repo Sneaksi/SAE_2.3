@@ -47,7 +47,7 @@ ventilometre/
 ### 1. Télécharger le dépôt
 
 ```bash
-[git clone https://github.com/Sneaksi/SAE_23.git](https://github.com/Sneaksi/SAE_2.3)
+https://github.com/Sneaksi/SAE_23.git
 cd ventilometre-g15
 ```
 
