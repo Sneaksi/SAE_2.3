@@ -46,9 +46,9 @@ ventilometre/
 
 ### 1. Télécharger le dépôt
 
-https://github.com/Sneaksi/SAE_23.git
+https://github.com/Sneaksi/SAE_2.3/tree/main
 ```bash
-cd ventilometre-g15
+cd ventilometre
 ```
 
 ### 2. Installer les dépendances
