@@ -93,6 +93,4 @@ Reproduction autorisée dans le cadre de la formation BUT Réseaux & Télécoms.
 ## 📬 Contact
 
 Pour toute question :  
-📧 jury-vermot.gr@gmail.com  
-📧 bastienlorenzi70@gmail.com 
-📧 florian.pistolet@gmail.com
+📧 jury-vermot.gr@gmail.com  📧 bastienlorenzi70@gmail.com 📧 florian.pistolet@gmail.com
