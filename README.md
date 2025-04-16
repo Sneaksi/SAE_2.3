@@ -47,7 +47,7 @@ ventilometre/
 ### 1. Cloner le dépôt
 
 ```bash
-git clone https://github.com/<ton-utilisateur>/ventilometre-g15.git
+git clone https://github.com/Sneaksi/ventilometre-g15.git
 cd ventilometre-g15
 ```
 
