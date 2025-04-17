@@ -18,12 +18,12 @@
         }
 
         h1 {
-            color: #1e3a8a; /* Titre en bleu foncé pour attirer l’attention */
+            color: #1e3a8a; /* Titre en bleu foncé */
             text-align: center;
         }
 
         .logo {
-            font-size: 40px; /* Taille du logo emoji 🌀 */
+            font-size: 40px; /* Taille du logo 🌀 */
         }
 
         form {
@@ -105,7 +105,7 @@
     <div class="logo">🌀</div>
 
     <!-- Titre principal de la page -->
-    <h1>Ventilomètre des Étudiants</h1>
+    <h1> Ventilomètre des Étudiants </h1>
 
     <!-- Bloc conditionnel : affiché seulement si une valeur collective de vent est disponible -->
     {% if vent_collectif %}
@@ -161,18 +161,33 @@
         <ul>
             {% for r in historique %}
             <li>
-                {{ r[6] }} – <strong>{{ r[1] }} {{ result.prenom }}</strong> :
+                {{ r[6] }} – <strong>{{ r[1] }} {{ r[7] }}</strong> :
                 {{ r[2] }} ({{ r[3] }} m/s)
                 {% if r[4] %}/ {{ r[4] }} ({{ r[5] }} m/s){% endif %}
             </li>
             {% endfor %}
         </ul>
 
-        <!-- Bouton de suppression de l’historique -->
         <form method="POST" action="{{ url_for('clear_history') }}">
+            <input type="hidden" name="nom" value="{{ result.nom }}">
+            <input type="hidden" name="prenom" value="{{ result.prenom }}">
             <button class="btn-clear">🗑️ Vider l'historique</button>
         </form>
-    </div>
+        
+</div>
+
     {% endif %}
+
+    <script>
+        // Quand on clique sur le bouton "Vider l'historique"
+        document.querySelector("form[action='/clear']")?.addEventListener("submit", function (e) {
+            e.preventDefault(); // Empêche le rechargement de la page
+            const historyBlock = this.closest(".history");
+            if (historyBlock) {
+                historyBlock.remove(); // Supprime visuellement le bloc
+            }
+        });
+    </script>
+    
 </body>
 </html>

@@ -109,10 +109,21 @@ def index():
 def clear_history():
     conn = sqlite3.connect("students.db")
     cursor = conn.cursor()
-    cursor.execute("DELETE FROM historique_recherches")  # Supprime toutes les entrées
+
+    # Supprime uniquement les 10 dernières recherches globales (celles affichées à l’écran)
+    cursor.execute("""
+        DELETE FROM historique_recherches
+        WHERE id IN (
+            SELECT id FROM historique_recherches
+            ORDER BY id DESC
+            LIMIT 10
+        )
+    """)
+
     conn.commit()
     conn.close()
-    return redirect(url_for("index"))  # Redirige vers la page principale
+    return redirect(url_for("index"))
+
 
 # Route pour afficher la liste des étudiants et leurs résidences
 @app.route("/etudiants")
