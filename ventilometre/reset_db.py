@@ -2,12 +2,12 @@ import os
 import sqlite3
 import json
 
-# === 1. Supprimer la base de données si elle existe déjà ===
+# === Supprimer la base de données si elle existe déjà ===
 if os.path.exists("students.db"):
     os.remove("students.db")  # Supprime le fichier "students.db"
     print("🗑️ Ancienne base supprimée.")
 
-# === 2. Création d’une nouvelle base de données ===
+# === Création d’une nouvelle base de données ===
 conn = sqlite3.connect("students.db")  # Crée un nouveau fichier de base de données
 cursor = conn.cursor()  # Initialise un curseur pour exécuter des requêtes SQL
 
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS historique_recherches (
 
 print("✅ Nouvelle base créée avec toutes les colonnes.")
 
-# === 3. Importation des données depuis le fichier JSON ===
+# === Importation des données depuis le fichier JSON ===
 with open("etudiants.json", "r", encoding="utf-8") as f:
     data = json.load(f)  # Chargement des données JSON en mémoire
 

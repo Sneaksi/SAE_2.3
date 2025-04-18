@@ -141,7 +141,7 @@
     <!-- Historique personnel : les recherches effectuées par l’utilisateur courant -->
     {% if historique_utilisateur %}
     <div class="history">
-        <h2>🕒 Historique personnel</h2>
+        <h2>🕒 Historique personnel  de {{ result.nom }} {{ result.prenom }}</h2>
         <ul>
             {% for h in historique_utilisateur %}
             <li>
@@ -157,7 +157,7 @@
     <!-- Historique global : toutes les recherches concernant un étudiant -->
     {% if historique %}
     <div class="history">
-        <h2>🧾 Historique global de {{ result.nom }} {{ result.prenom }}</h2>
+        <h2>🧾 Historique global</h2>
         <ul>
             {% for r in historique %}
             <li>

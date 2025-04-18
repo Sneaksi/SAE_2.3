@@ -1,4 +1,3 @@
-# Importation des modules nécessaires
 from flask import Flask, render_template, request, redirect, url_for  # Flask et ses fonctions utiles
 import sqlite3  # Pour interagir avec la base de données SQLite
 from datetime import datetime  # Pour récupérer la date et l'heure actuelles
@@ -39,12 +38,12 @@ def index():
         now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")  # Date et heure actuelles
 
         # Récupère les résidences associées à l'étudiant dont le nom est saisi
-        cursor.execute("""
+        cursor.execute("""   
             SELECT e.id, e.nom, e.prenom, r.ville, r.date_fin, r.id
             FROM etudiants e
             JOIN residences r ON e.id = r.etudiant_id
             WHERE e.nom = ?
-        """, (nom_recherche.upper(),))
+        """, (nom_recherche.upper(),)) 
         rows = cursor.fetchall()
 
         if rows:
@@ -126,7 +125,7 @@ def clear_history():
 
 
 # Route pour afficher la liste des étudiants et leurs résidences
-@app.route("/etudiants")
+@app.route("/etudiants") # Route pour afficher la liste des étudiants et leurs résidences
 def etudiants():
     conn = sqlite3.connect("students.db")
     cursor = conn.cursor()
